@@ -83,7 +83,6 @@
                 android:layout_marginTop="@dimen/_20sdp"
                 android:background="@drawable/mail_client"
                 app:backgroundTint="@null"
-                android:scaleX=""
                 android:id="@+id/mail_button"
                 android:layout_margin="@dimen/_13sdp"
                 android:layout_toRightOf="@id/share_button"
@@ -96,10 +95,10 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp"
                 android:id="@+id/privete_txt"
+                android:textAlignment="center"
                 android:layout_below="@id/share_button"
                 android:background="@drawable/border"
-                android:layout_margin="@dimen/_7sdp"
-
+                android:layout_marginTop="@dimen/_10sdp"
                 />
 
 
