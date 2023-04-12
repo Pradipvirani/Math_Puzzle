@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class puzzle_play_activity extends AppCompatActivity implements View.OnClickListener {
-    Button [] button = new Button[9];
+    Button [] button = new Button[10];
     TextView textView;
     String str1;
     Button delete;
@@ -16,7 +16,7 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle_play);
-        for(int i=0;i<= button.length;i++)
+        for(int i=0;i< button.length;i++)
         {
             int id=getResources().getIdentifier("btn"+i,"id",getPackageName());
             button[i]=findViewById(id);

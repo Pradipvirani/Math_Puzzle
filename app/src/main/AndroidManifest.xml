@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Math_Puzzle"
         tools:targetApi="31">
         <activity
+            android:name=".Level_show_activity"
+            android:exported="false" />
+        <activity
             android:name=".puzzle_play_activity"
             android:exported="false" />
         <activity
