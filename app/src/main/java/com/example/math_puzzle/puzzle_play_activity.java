@@ -7,12 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class puzzle_play_activity extends AppCompatActivity implements View.OnClickListener {
     Button [] button = new Button[10];
     TextView textView;
-    String str1;
-    Button delete;
+    String str1,str;
+    Button delete,submit;
+    ArrayList <String> imgArr = new ArrayList<>();
     String temp;
+    int level;
+
+    int ansarr []={10,20,30,40,50,60,70,80,90,100,110,120,130,140,150};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +32,9 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
         textView=findViewById(R.id.answer_txt);
         delete=findViewById(R.id.delete_button);
         delete.setOnClickListener(this);
+        submit=findViewById(R.id.submit_button);
+        submit.setOnClickListener(this);
+        level=findViewById(R.id.l)
     }
 
     @Override
@@ -49,6 +58,12 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
                 textView.setText(""+s);
             }
 
+        }
+        if (view.getId()==submit.getId())
+        {
+            str=String.valueOf(textView.getText());
+            int n=Integer.parseInt(str);
+            if (ansarr)
         }
     }
 }

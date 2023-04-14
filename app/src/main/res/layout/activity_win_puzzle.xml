@@ -41,6 +41,14 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/back_button"
             app:backgroundTint="@null"
+            android:id="@+id/continue_button"/>
+        <Button
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:text="MAIN MENU"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/back_button"
+            app:backgroundTint="@null"
             android:id="@+id/main_menu_button"/>
         <Button
             android:layout_width="@dimen/_150sdp"
@@ -53,11 +61,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Share puzzle to your friend"
+            android:text="SHARE THIS PUZZLE"
             android:textAlignment="center"
-            android:layout_marginTop="@dimen/_20sdp"
-
-            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textStyle="bold"
+            android:textColor="@color/purple_700"
             android:textSize="@dimen/_20sdp"
             />
         <Button
