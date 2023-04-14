@@ -12,6 +12,7 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
     TextView textView;
     String str1;
     Button delete;
+    String temp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,47 +30,15 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        if(button[0].getId()==view.getId())
+        for (int i=0;i< button.length;i++)
         {
-            str1=String.valueOf(textView.getText());
-            textView.setText(str1+"0");
-        } if(button[1].getId()==view.getId())
-        {
-            str1=String.valueOf(textView.getText());
-            textView.setText(str1+"1");
-        } if(button[2].getId()==view.getId())
-        {
-            str1=String.valueOf(textView.getText());
-            textView.setText(str1+"2");
-        } if(button[3].getId()==view.getId())
-        {
-            str1=String.valueOf(textView.getText());
-            textView.setText(str1+"3");
-        } if(button[4].getId()==view.getId())
-        {
-            str1=String.valueOf(textView.getText());
-            textView.setText(str1+"4");
-        } if(button[5].getId()==view.getId())
-        {
-            str1=String.valueOf(textView.getText());
-            textView.setText(str1+"5");
-        } if(button[6].getId()==view.getId())
-        {
-            str1=String.valueOf(textView.getText());
-            textView.setText(str1+"6");
-        } if(button[7].getId()==view.getId())
-        {
-            str1=String.valueOf(textView.getText());
-            textView.setText(str1+"7");
-        } if(button[8].getId()==view.getId())
-        {
-            str1=String.valueOf(textView.getText());
-            textView.setText(str1+"8");
-        } if(button[9].getId()==view.getId())
-        {
-            str1=String.valueOf(textView.getText());
-            textView.setText(str1+"9");
+            if(button[i].getId()==view.getId()) {
+                str1 = String.valueOf(textView.getText());
+                textView.setText(str1+i);
+            }
+
         }
+
         if (view.getId()==delete.getId())
         {
             str1=String.valueOf(textView.getText());
