@@ -1,19 +1,25 @@
 package com.example.math_puzzle;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Puzzle_Adapter extends BaseAdapter {
-    Context context;
+    Activity context;
     int lock;
     ImageView imageView;
-    public Puzzle_Adapter(Level_show_activity level_show_activity, int lock) {
+    TextView textView;
+    SharedPreferences preferences;
+    public Puzzle_Adapter(Level_show_activity level_show_activity, int lock, SharedPreferences preferences) {
         this.context=level_show_activity;
         this.lock=lock;
+        this.preferences=preferences;
     }
 
     @Override
@@ -37,6 +43,34 @@ public class Puzzle_Adapter extends BaseAdapter {
 
         imageView=view.findViewById(R.id.item_txt_view);
         imageView.setImageResource(lock);
+        textView=view.findViewById(R.id.item_txt_view1);
+        int lastlevel = preferences.getInt("lastlevel",-1);
+        String status = preferences.getString("levelstatus"+i,"pending");
+            if (status.equals("win"))
+            {
+                imageView.setImageResource(R.drawable.tick);
+                textView.setText(""+(i+1));
+                textView.setVisibility(View.VISIBLE);
+            }
+            if (status.equals("skip") || i == lastlevel + 1 )
+
+            {
+                imageView.setImageResource(0);
+                textView.setText(""+(i+1));
+                textView.setVisibility(View.VISIBLE);
+            }
+            if (status.equals("win") || status.equals("skip") || i == lastlevel + 1)
+            {
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context,puzzle_play_activity.class);
+                        intent.putExtra("level",i);
+                        context.startActivity(intent);
+                        context.finish();
+                    }
+                });
+            }
         return view;
     }
 }

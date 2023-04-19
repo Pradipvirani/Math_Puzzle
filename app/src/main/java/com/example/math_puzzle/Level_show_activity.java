@@ -3,6 +3,7 @@ package com.example.math_puzzle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,8 @@ public class Level_show_activity extends AppCompatActivity {
     GridView gridView;
     Button button;
     TextView textView;
+
+    SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +24,8 @@ public class Level_show_activity extends AppCompatActivity {
         gridView=findViewById(R.id.Level_grid_view);
         textView=findViewById(R.id.select_puzzle);
         button=findViewById(R.id.next_button);
-        Puzzle_Adapter puzzle_adapter = new Puzzle_Adapter(Level_show_activity.this,Config.lock);
+        preferences=getSharedPreferences("mypre",MODE_PRIVATE);
+        Puzzle_Adapter puzzle_adapter = new Puzzle_Adapter(Level_show_activity.this,Config.lock,preferences);
         gridView.setAdapter(puzzle_adapter );
         Typeface typeface = Typeface.createFromAsset(Level_show_activity.this.getAssets(),Config.font);
         textView.setTypeface(typeface);

@@ -3,6 +3,7 @@ package com.example.math_puzzle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 {
 TextView textView1,textView2,textView3,textView4;
 Button share,email,buy,nothanks;
+SharedPreferences preferences;
+int lastlevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +37,8 @@ Button share,email,buy,nothanks;
         textView4.setOnClickListener(this);
         share.setOnClickListener(this);
         email.setOnClickListener(this);
+        preferences=getSharedPreferences("mypre",MODE_PRIVATE);
+        lastlevel=preferences.getInt("lastlevel",0);
 
     }
 
@@ -67,7 +72,9 @@ Button share,email,buy,nothanks;
         if (view.getId()==textView2.getId())
         {
             Intent intent = new Intent(MainActivity.this,Level_show_activity.class);
+            intent.putExtra("level",lastlevel+1);
             startActivity(intent);
+
 
         }
         if (view.getId()==textView3.getId())
@@ -91,9 +98,6 @@ Button share,email,buy,nothanks;
             });
 
         }
-        if (view.getId()==textView2.getId())
-        {
 
-        }
     }
 }

@@ -1,22 +1,38 @@
 package com.example.math_puzzle;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class puzzle_play_activity extends AppCompatActivity implements View.OnClickListener {
     Button [] button = new Button[10];
     TextView textView;
-    String str1,str;
-    Button delete,submit;
+    ImageView imageView;
+    String str1,str,temp;
+    Button delete,submit,skip;
     ArrayList <String> imgArr = new ArrayList<>();
-    String temp;
-    int level;
+    List<String> arraylist = new ArrayList<>();
+
+    int level,lastlevel;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     int ansarr []={10,20,30,40,50,60,70,80,90,100,110,120,130,140,150};
     @Override
@@ -33,8 +49,40 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
         delete=findViewById(R.id.delete_button);
         delete.setOnClickListener(this);
         submit=findViewById(R.id.submit_button);
+        imageView=findViewById(R.id.puzzle_imageview);
         submit.setOnClickListener(this);
-        level=findViewById(R.id.l)
+        preferences=getSharedPreferences("mypre",0);
+
+        if (getIntent().getExtras() != null) {
+            level = getIntent().getIntExtra("level", 0);
+        }
+            String[] images = new String[0];
+        try {
+            images = getAssets().list("images/");
+            imgArr = new ArrayList<String>(Arrays.asList(images));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        InputStream inputStream = null;
+        {
+            try {
+                inputStream =getAssets().open("images/"+imgArr.get(lastlevel));
+                Drawable drawable = Drawable.createFromStream(inputStream,null);
+
+                imageView.setImageDrawable(drawable);
+                inputStream.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
+
+
+        }
+
+
     }
 
     @Override
@@ -63,7 +111,31 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
         {
             str=String.valueOf(textView.getText());
             int n=Integer.parseInt(str);
-            if (ansarr)
+            if (ansarr[level]==n)
+            {
+                editor.putInt("lastlevel",level);
+                editor.putString("levelstatus","win");
+                editor.commit();
+                Intent intent = new Intent(puzzle_play_activity.this,win_puzzle_activity.class);
+                intent.putExtra("level",level);
+                startActivity(intent);
+            }
+            else
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("wrong...");
+                builder.show();
+            }
+        }
+        if (view.getId()==skip.getId())
+        {
+            editor.putInt("lastlevel",level);
+            editor.putString("levelstatus"+level,"skip");
+            System.out.println(level);
+            editor.commit();
+            Intent intent = new Intent(puzzle_play_activity.this,puzzle_play_activity.class);
+            intent.putExtra("level",(level+1));
+            startActivity(intent);
         }
     }
 }
