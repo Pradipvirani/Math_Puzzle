@@ -53,23 +53,23 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
         submit.setOnClickListener(this);
         preferences=getSharedPreferences("mypre",0);
 
-        if (getIntent().getExtras() != null) {
+        if (getIntent().getExtras() == null) {
             level = getIntent().getIntExtra("level", 0);
         }
             String[] images = new String[0];
         try {
             images = getAssets().list("images/");
-            imgArr = new ArrayList<String>(Arrays.asList(images));
+            imgArr = new ArrayList<>(Arrays.asList(images));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+            arraylist = imgArr;
         InputStream inputStream = null;
         {
             try {
-                inputStream =getAssets().open("images/"+imgArr.get(lastlevel));
+                inputStream =getAssets().open("images/"+arraylist.get(level));
                 Drawable drawable = Drawable.createFromStream(inputStream,null);
-
+                System.out.println("input strram="+drawable);
                 imageView.setImageDrawable(drawable);
                 inputStream.close();
             }
