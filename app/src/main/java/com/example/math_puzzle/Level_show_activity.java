@@ -13,8 +13,9 @@ import android.widget.TextView;
 
 public class Level_show_activity extends AppCompatActivity {
     GridView gridView;
-    Button button;
+    Button button ,pbutton;
     TextView textView;
+     public static int cnt=0;
 
     SharedPreferences preferences;
     @Override
@@ -24,15 +25,30 @@ public class Level_show_activity extends AppCompatActivity {
         gridView=findViewById(R.id.Level_grid_view);
         textView=findViewById(R.id.select_puzzle);
         button=findViewById(R.id.next_button);
+        pbutton=findViewById(R.id.previus_button);
         preferences=getSharedPreferences("mypre",MODE_PRIVATE);
+
         Puzzle_Adapter puzzle_adapter = new Puzzle_Adapter(Level_show_activity.this,Config.lock,preferences);
         gridView.setAdapter(puzzle_adapter );
         Typeface typeface = Typeface.createFromAsset(Level_show_activity.this.getAssets(),Config.font);
         textView.setTypeface(typeface);
+        if (cnt == 1) {
+            pbutton.setVisibility(View.VISIBLE);
+            pbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
+
+        }
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Level_show_activity.this,Level_show_activity.class);
+                cnt++;
+                Intent intent = new Intent(Level_show_activity.this, Level_show_activity.class);
+
                 startActivity(intent);
             }
         });

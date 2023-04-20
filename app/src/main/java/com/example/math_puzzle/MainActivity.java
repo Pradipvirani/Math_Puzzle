@@ -66,13 +66,14 @@ int lastlevel;
         if (view.getId()==textView1.getId())
         {
             Intent intent = new Intent(MainActivity.this,puzzle_play_activity.class);
+            intent.putExtra("level",lastlevel+1);
             startActivity(intent);
 
         }
         if (view.getId()==textView2.getId())
         {
             Intent intent = new Intent(MainActivity.this,Level_show_activity.class);
-            intent.putExtra("level",lastlevel+1);
+
             startActivity(intent);
 
 

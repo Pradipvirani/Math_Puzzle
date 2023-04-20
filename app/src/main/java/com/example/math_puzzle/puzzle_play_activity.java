@@ -45,6 +45,7 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
             button[i]=findViewById(id);
             button[i].setOnClickListener(this);
         }
+
         textView=findViewById(R.id.answer_txt);
         delete=findViewById(R.id.delete_button);
         delete.setOnClickListener(this);
@@ -52,22 +53,23 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
         imageView=findViewById(R.id.puzzle_imageview);
         submit.setOnClickListener(this);
         preferences=getSharedPreferences("mypre",0);
+        editor=preferences.edit();
 
-        if (getIntent().getExtras() == null) {
+        if (getIntent().getExtras() != null) {
             level = getIntent().getIntExtra("level", 0);
         }
             String[] images = new String[0];
         try {
-            images = getAssets().list("images/");
+            images = getAssets().list("imges/");
             imgArr = new ArrayList<>(Arrays.asList(images));
         } catch (IOException e) {
             e.printStackTrace();
         }
-            arraylist = imgArr;
+        arraylist=imgArr.clone();
         InputStream inputStream = null;
         {
             try {
-                inputStream =getAssets().open("images/"+arraylist.get(level));
+                inputStream =getAssets().open("imges/"+arraylist.get(level-1));
                 Drawable drawable = Drawable.createFromStream(inputStream,null);
                 System.out.println("input strram="+drawable);
                 imageView.setImageDrawable(drawable);
