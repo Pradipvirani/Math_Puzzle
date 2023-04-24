@@ -19,6 +19,7 @@
             android:background="@drawable/skip"
             app:backgroundTint="@null"
             android:layout_weight="1.5"
+            android:id="@+id/skip_button"
 
 
             />
@@ -30,6 +31,7 @@
             android:layout_marginTop="@dimen/_9sdp"
             android:text="Puzzle 1"
             android:textAlignment="center"
+            android:id="@+id/level_show_txt"
             android:textColor="@color/black"
             android:textSize="@dimen/_30sdp"
             />
@@ -39,6 +41,7 @@
             app:backgroundTint="@null"
             android:layout_weight="1.5"
             android:background="@drawable/hint"
+            android:id="@+id/hint_button"
             />
 
     </LinearLayout>
@@ -49,7 +52,7 @@
         android:layout_marginTop="@dimen/_10sdp">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/puzzle_imageview"/>
 
     </LinearLayout>

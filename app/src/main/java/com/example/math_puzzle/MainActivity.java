@@ -38,7 +38,7 @@ int lastlevel;
         share.setOnClickListener(this);
         email.setOnClickListener(this);
         preferences=getSharedPreferences("mypre",MODE_PRIVATE);
-        lastlevel=preferences.getInt("lastlevel",0);
+        lastlevel=preferences.getInt("lastlevel",-1);
 
     }
 

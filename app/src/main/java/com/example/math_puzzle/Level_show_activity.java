@@ -15,7 +15,7 @@ public class Level_show_activity extends AppCompatActivity {
     GridView gridView;
     Button button ,pbutton;
     TextView textView;
-     public static int cnt=0;
+
 
     SharedPreferences preferences;
     @Override
@@ -32,12 +32,16 @@ public class Level_show_activity extends AppCompatActivity {
         gridView.setAdapter(puzzle_adapter );
         Typeface typeface = Typeface.createFromAsset(Level_show_activity.this.getAssets(),Config.font);
         textView.setTypeface(typeface);
-        if (cnt == 1) {
+        if (Config.cnt == 1) {
             pbutton.setVisibility(View.VISIBLE);
             pbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Config.cnt--;
+                    Intent intent = new Intent(Level_show_activity.this, Level_show_activity.class);
 
+                    startActivity(intent);
+                    finish();
                 }
             });
 
@@ -46,10 +50,11 @@ public class Level_show_activity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cnt++;
+                Config.cnt++;
                 Intent intent = new Intent(Level_show_activity.this, Level_show_activity.class);
 
                 startActivity(intent);
+                finish();
             }
         });
     }

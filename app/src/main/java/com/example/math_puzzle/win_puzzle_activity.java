@@ -23,12 +23,12 @@ public class win_puzzle_activity extends AppCompatActivity implements View.OnCli
         win=findViewById(R.id.win_solve_nummber);
         con=findViewById(R.id.continue_button);
         main=findViewById(R.id.main_menu_button);
-        buypro=findViewById(R.id.buy_txt);
+        buypro=findViewById(R.id.buy_button);
         con.setOnClickListener(this);
         main.setOnClickListener(this);
-        buy.setOnClickListener(this);
+        buypro.setOnClickListener(this);
         n=getIntent().getIntExtra("level",0);
-        win.setText("puzzle"+(n+1)+"Solved");
+        win.setText("puzzle "+(n+1)+" Solved");
     }
 
     @Override
@@ -36,11 +36,27 @@ public class win_puzzle_activity extends AppCompatActivity implements View.OnCli
     {
         if (view.getId()==con.getId())
         {
+            if (Config.cnt==0) {
+                Intent intent = new Intent(win_puzzle_activity.this, puzzle_play_activity.class);
+                intent.putExtra("level", (n + 1));
+                startActivity(intent);
+
+            }
+            if (Config.cnt==1) {
+                Intent intent = new Intent(win_puzzle_activity.this, puzzle_play_activity.class);
+                intent.putExtra("level", (n + 21));
+                startActivity(intent);
+
+            }
+            finish();
+        }
+        if (view.getId()==main.getId())
+        {
             Intent intent = new Intent(win_puzzle_activity.this,MainActivity.class);
             startActivity(intent);
             finish();
         }
-        if (view.getId()==buy.getId())
+        if (view.getId()==buypro.getId())
         {
             BottomSheetDialog dialog = new BottomSheetDialog(this);
             dialog.setContentView(R.layout.buy_pro_layout);
