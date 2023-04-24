@@ -88,7 +88,7 @@ public class Puzzle_Adapter extends BaseAdapter {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context, puzzle_play_activity.class);
-                        intent.putExtra("level", i+21);
+                        intent.putExtra("level", i+20);
                         context.startActivity(intent);
                         context.finish();
                     }

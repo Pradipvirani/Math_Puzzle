@@ -34,6 +34,7 @@ public class Level_show_activity extends AppCompatActivity {
         textView.setTypeface(typeface);
         if (Config.cnt == 1) {
             pbutton.setVisibility(View.VISIBLE);
+            button.setVisibility(View.GONE);
             pbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
