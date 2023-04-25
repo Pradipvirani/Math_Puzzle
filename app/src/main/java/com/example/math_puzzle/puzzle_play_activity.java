@@ -34,7 +34,7 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-    int ansarr []={10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300};
+    int ansarr []={10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +53,11 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
         submit=findViewById(R.id.submit_button);
         imageView=findViewById(R.id.puzzle_imageview);
         submit.setOnClickListener(this);
-        preferences=getSharedPreferences("mypre",0);
+        preferences=getSharedPreferences("mypre",MODE_PRIVATE);
         editor=preferences.edit();
         skip=findViewById(R.id.skip_button);
         skip.setOnClickListener(this);
+        lastlevel= preferences.getInt("lastlevel",0);
 
         if (getIntent().getExtras() != null) {
             level = getIntent().getIntExtra("level", 0);
@@ -115,24 +116,37 @@ public class puzzle_play_activity extends AppCompatActivity implements View.OnCl
             }
 
         }
-        if (view.getId()==submit.getId())
-        {
-            str=String.valueOf(textView.getText());
-            int n=Integer.parseInt(str);
-            if (ansarr[level]==n)
-            {
-                editor.putInt("lastlevel",level);
-                editor.putString("levelstatus"+level,"win");
-                editor.commit();
-                Intent intent = new Intent(puzzle_play_activity.this,win_puzzle_activity.class);
-                intent.putExtra("level",level);
-                startActivity(intent);
+        if (view.getId()==submit.getId()) {
+            str = String.valueOf(textView.getText());
+            int n = Integer.parseInt(str);
+            if (lastlevel > level) {
+                if (ansarr[level] == n) {
+                    editor.putInt("lastlevel", lastlevel);
+                    editor.putString("levelstatus" + level, "win");
+                    editor.commit();
+                    Intent intent = new Intent(puzzle_play_activity.this, win_puzzle_activity.class);
+                    intent.putExtra("level", level);
+                    startActivity(intent);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("wrong...");
+                    builder.show();
+                }
             }
-            else
-            {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("wrong...");
-                builder.show();
+
+        else {
+                if (ansarr[level] == n) {
+                    editor.putInt("lastlevel", level);
+                    editor.putString("levelstatus" + level, "win");
+                    editor.commit();
+                    Intent intent = new Intent(puzzle_play_activity.this, win_puzzle_activity.class);
+                    intent.putExtra("level", level);
+                    startActivity(intent);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("wrong...");
+                    builder.show();
+                }
             }
         }
         if (view.getId()==skip.getId())
