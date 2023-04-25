@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".puzzle_play_activity"
+    tools:context=".Activity.puzzle_play_activity"
     android:orientation="vertical"
     android:background="@drawable/gameplaybackground"
     android:id="@+id/puzzle_play_activity">

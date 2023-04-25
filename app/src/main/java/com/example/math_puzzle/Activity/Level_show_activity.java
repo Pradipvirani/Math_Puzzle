@@ -1,4 +1,4 @@
-package com.example.math_puzzle;
+package com.example.math_puzzle.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import com.example.math_puzzle.Adapter.Puzzle_Adapter;
+import com.example.math_puzzle.Config;
+import com.example.math_puzzle.R;
 
 public class Level_show_activity extends AppCompatActivity {
     GridView gridView;
@@ -28,7 +32,7 @@ public class Level_show_activity extends AppCompatActivity {
         pbutton=findViewById(R.id.previus_button);
         preferences=getSharedPreferences("mypre",MODE_PRIVATE);
 
-        Puzzle_Adapter puzzle_adapter = new Puzzle_Adapter(Level_show_activity.this,Config.lock,preferences);
+        Puzzle_Adapter puzzle_adapter = new Puzzle_Adapter(Level_show_activity.this, Config.lock,preferences);
         gridView.setAdapter(puzzle_adapter );
         Typeface typeface = Typeface.createFromAsset(Level_show_activity.this.getAssets(),Config.font);
         textView.setTypeface(typeface);

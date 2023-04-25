@@ -1,6 +1,5 @@
-package com.example.math_puzzle;
+package com.example.math_puzzle.Activity;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,13 +12,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.math_puzzle.R;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class puzzle_play_activity extends AppCompatActivity implements View.OnClickListener {
     Button [] button = new Button[10];

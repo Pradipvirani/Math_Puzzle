@@ -1,4 +1,4 @@
-package com.example.math_puzzle;
+package com.example.math_puzzle.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,9 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.math_puzzle.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-
-import java.util.logging.Level;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {

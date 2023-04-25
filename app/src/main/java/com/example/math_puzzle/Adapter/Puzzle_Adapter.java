@@ -1,4 +1,4 @@
-package com.example.math_puzzle;
+package com.example.math_puzzle.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.math_puzzle.Config;
+import com.example.math_puzzle.Activity.Level_show_activity;
+import com.example.math_puzzle.R;
+import com.example.math_puzzle.Activity.puzzle_play_activity;
 
 public class Puzzle_Adapter extends BaseAdapter {
     Activity context;
