@@ -78,12 +78,12 @@ public class Puzzle_Adapter extends BaseAdapter {
                 imageView.setImageResource(R.drawable.tick);
                 textView.setText("" + (i + 21));
                 textView.setVisibility(View.VISIBLE);
-            }else if (status.equals("skip") || i+21 == lastlevel + 1) {
+            }else if (status.equals("skip") || i+20 == lastlevel + 1) {
                 imageView.setImageResource(0);
                 textView.setText("" + (i + 21));
                 textView.setVisibility(View.VISIBLE);
             }
-            if (status.equals("win") || status.equals("skip") || i+21 == lastlevel + 1) {
+            if (status.equals("win") || status.equals("skip") || i+20 == lastlevel + 1) {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
